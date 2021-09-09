@@ -10,6 +10,10 @@ In the project directory, you run:
 
 this command will install all dependencies this demo app need to run.
 
+### `create .env.local`
+
+the .env file should contain firebase config like .env.exmple.txt
+
 ### `yarn start`
 
 Runs the app in the development mode.\
