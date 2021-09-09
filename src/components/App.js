@@ -1,10 +1,10 @@
 import React from "react";
-import AuthMenu from "./authMenu/AuthMenu";
+import Container from "./container/Container";
 
 function App() {
   return (
     <>
-      <AuthMenu />
+      <Container />
     </>
   );
 }
