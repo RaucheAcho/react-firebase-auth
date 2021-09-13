@@ -3,13 +3,13 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const config = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-  storageBucket: process.env.REACT_APP_FIREBASE_PROJET_ID,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  appId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyBhBFXT5vps3nxPLa53sZEjAdQYktWIeHU",
+  authDomain: "auth-dev-d81f6.firebaseapp.com",
+  projectId: "auth-dev-d81f6",
+  storageBucket: "auth-dev-d81f6.appspot.com",
+  messagingSenderId: "765337026747",
+  appId: "1:765337026747:web:d17185c3b243e4e4e4299e",
+  measurementId: "G-3HSH4FC6B9",
 };
 
 export const createUserProfile = async (userAuth, otherdata) => {
