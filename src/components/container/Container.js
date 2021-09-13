@@ -19,6 +19,9 @@ import {
 } from "../../redux/modal/modal.selectors";
 import { createStructuredSelector } from "reselect";
 
+import * as HeroIcons from "react-icons/hi";
+import { IconContext } from "react-icons/lib";
+
 const Container = ({
   toggleModalHidden,
   modalOpen,
@@ -63,6 +66,23 @@ const Container = ({
       <div className="px-4 md:px-0 max-w-screen-md mx-auto flex flex-col border h-96 bg-gray-100 mt-48 items-center justify-center rounded-lg">
         {currentUser ? (
           <>
+            <div className="pb-10 flex flex-col items-center">
+              <div>
+                <IconContext.Provider
+                  value={{
+                    className: "w-24 h-24 text-blue-400 bg-gray-200 rouned",
+                  }}
+                >
+                  <HeroIcons.HiUser />
+                </IconContext.Provider>
+              </div>
+              <p className="font-bold text-center text-2xl">
+                {currentUser.displayName}
+              </p>
+              <p className="font-bold text-center text-2xl">
+                {currentUser.email}
+              </p>
+            </div>
             <CustomButton
               onClick={() => signOut()}
               className="transform scale-100 hover:scale-105 transition duration-500 ease-in-out  bg-blue-400 px-6 py-2 rounded text-white font-bold"

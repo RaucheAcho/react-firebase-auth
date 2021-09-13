@@ -1,10 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
 import { signInWithFaceBook } from "../../firebase/firebase";
+import { toggleModalHidden } from "../../redux/modal/modal.actions";
 
-const ConnectWithFacebook = () => {
+const ConnectWithFacebook = ({ toggleModalHidden }) => {
+  const onClickHandler = () => {
+    signInWithFaceBook();
+    toggleModalHidden();
+  };
   return (
     <button
-      onClick={signInWithFaceBook}
+      onClick={onClickHandler}
       className="flex border h-10 items-center w-full rounded-md bg-blue-400 text-white mb-3"
     >
       <svg
@@ -22,4 +28,8 @@ const ConnectWithFacebook = () => {
   );
 };
 
-export default ConnectWithFacebook;
+const mapDispatchToProps = (dispatch) => ({
+  toggleModalHidden: () => dispatch(toggleModalHidden()),
+});
+
+export default connect(null, mapDispatchToProps)(ConnectWithFacebook);
