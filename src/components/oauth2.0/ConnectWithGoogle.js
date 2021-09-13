@@ -1,10 +1,16 @@
 import React from "react";
-//import { signInWithGoogle } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
+import { signInWithGoogle } from "../../firebase/firebase";
+import { toggleModalHidden } from "../../redux/modal/modal.actions";
 
-const ConnectWithGoogle = () => {
+const ConnectWithGoogle = ({ toggleModalHidden }) => {
+  const onClickHandler = () => {
+    signInWithGoogle();
+    toggleModalHidden();
+  };
   return (
     <button
-      //onClick={signInWithGoogle}
+      onClick={onClickHandler}
       className="bg-red-500 flex w-full border h-10 items-center rounded-md font-bold text-white mb-4"
     >
       <svg
@@ -22,4 +28,8 @@ const ConnectWithGoogle = () => {
   );
 };
 
-export default ConnectWithGoogle;
+const mapDispatchToProps = (dispatch) => ({
+  toggleModalHidden: () => dispatch(toggleModalHidden()),
+});
+
+export default connect(null, mapDispatchToProps)(ConnectWithGoogle);

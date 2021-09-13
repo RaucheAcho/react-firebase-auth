@@ -1,16 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import Menu from "../authMenu/Menu";
 import SigninWithPhone from "../signin-with-phone/SigninWithPhone";
 import SiginAndSignup from "../signin-and-signup/SiginAndSignup";
 import CustomButton from "../custom-button/customButton";
-
+import { signOut } from "../../firebase/firebase";
 import Modal from "../partials/Modal";
 import {
   toggleModalHidden,
   toggleModalReset,
 } from "../../redux/modal/modal.actions";
+
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+
 import {
   selectmodalChoice,
   selectModalOpen,
@@ -22,6 +24,7 @@ const Container = ({
   modalOpen,
   modalChoice,
   toggleModalReset,
+  currentUser,
 }) => {
   const clickHandler = (e) => {
     toggleModalHidden();
@@ -58,15 +61,30 @@ const Container = ({
         </p>
       </Modal>
       <div className="px-4 md:px-0 max-w-screen-md mx-auto flex flex-col border h-96 bg-gray-100 mt-48 items-center justify-center rounded-lg">
-        <div className="py-10">
-          <h2 className="text-2xl text-gray-400">Vous n'êtes pas connecté</h2>
-        </div>
-        <CustomButton
-          onClick={clickHandler}
-          className="transform scale-100 hover:scale-105 transition duration-500 ease-in-out  bg-blue-400 px-6 py-2 rounded text-white font-bold"
-        >
-          Se connecter
-        </CustomButton>
+        {currentUser ? (
+          <>
+            <CustomButton
+              onClick={() => signOut()}
+              className="transform scale-100 hover:scale-105 transition duration-500 ease-in-out  bg-blue-400 px-6 py-2 rounded text-white font-bold"
+            >
+              Se deconnecter
+            </CustomButton>
+          </>
+        ) : (
+          <>
+            <div className="py-10">
+              <h2 className="text-2xl text-gray-400">
+                Vous n'êtes pas connecté
+              </h2>
+            </div>
+            <CustomButton
+              onClick={clickHandler}
+              className="transform scale-100 hover:scale-105 transition duration-500 ease-in-out  bg-blue-400 px-6 py-2 rounded text-white font-bold"
+            >
+              Se connecter
+            </CustomButton>
+          </>
+        )}
       </div>
     </>
   );
@@ -78,7 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  //currentUser: selectCurrentUser,
+  currentUser: selectCurrentUser,
   modalOpen: selectModalOpen,
   modalChoice: selectmodalChoice,
 });

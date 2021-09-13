@@ -1,10 +1,10 @@
 import React from "react";
-//import { signInWithFaceBook } from "../../firebase/firebase.utils";
+import { signInWithFaceBook } from "../../firebase/firebase";
 
 const ConnectWithFacebook = () => {
   return (
     <button
-      //onClick={signInWithFaceBook}
+      onClick={signInWithFaceBook}
       className="flex border h-10 items-center w-full rounded-md bg-blue-400 text-white mb-3"
     >
       <svg
